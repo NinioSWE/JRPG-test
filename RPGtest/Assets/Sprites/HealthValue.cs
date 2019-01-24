@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthValue : MonoBehaviour {
     
-    public float health = 100;
+    public float startHealth = 100;
     public Text healthText;
 
-    private float startHealth;
+   static private float health;
     private Scrollbar m_Scrollbar;
 
     private void Start()
     {
-        startHealth = health;
+        health = startHealth;
         m_Scrollbar = GetComponent<Scrollbar>();
     }
     void Update () {
         if(health > startHealth)
         {
-            health = startHealth;
+           startHealth = health;
+        }
+        else if (health <= 0)
+        {
+            SceneManager.LoadScene("main");
         }
         m_Scrollbar.size = health/startHealth;
         healthText.text = health + "/" + startHealth;
 	}
+
+    public static void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
 }
