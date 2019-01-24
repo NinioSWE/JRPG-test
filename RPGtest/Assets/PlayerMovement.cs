@@ -8,16 +8,18 @@ public class PlayerMovement : MonoBehaviour
 	private float horizontalInput;
 	private float verticalInput;
 	
-	private float left = 1;
-	private float right = -1;
-	private float up = 1;
-	private float down = -1;
+	private int left = -1;
+	private int right = 1;
+	private int up = 1;
+	private int down = -1;
+    private Animator mAnimator;
+    private int lastDir = 0;
 	
 	Vector3 movement;
 
 	void Start () 
 	{
-		
+        mAnimator = GetComponent<Animator>();
 	}
 	
 	void playerInput()
@@ -40,22 +42,42 @@ public class PlayerMovement : MonoBehaviour
 		if(horizontalInput == left)
 		{
 			hor = left;
-		}
+            mAnimator.SetInteger("MoveDirection", 4);
+            mAnimator.SetInteger("IdleDirection", 0);
+            lastDir = 4;
+
+        }
 		
-		if(horizontalInput == right)
+		else if(horizontalInput == right)
 		{
-			hor = right;		
-		}
+            mAnimator.SetInteger("MoveDirection", 2);
+            mAnimator.SetInteger("IdleDirection", 0);
+            hor = right;
+            lastDir = 2;
+        }
 		
-		if(verticalInput == up)
+		else if(verticalInput == up)
 		{
-			vert = up;
-		}
+            mAnimator.SetInteger("MoveDirection", 1);
+            mAnimator.SetInteger("IdleDirection", 0);
+            vert = up;
+            lastDir = 1;
+        }
 		
-		if(verticalInput == down)
+		else if(verticalInput == down)
 		{
-			vert = down;	
-		}
+            mAnimator.SetInteger("MoveDirection", 3);
+            mAnimator.SetInteger("IdleDirection", 0);
+            vert = down;
+            lastDir = 3;
+        }
+
+        //Debug.Log(verticalInput + " " + horizontalInput);
+        else if (verticalInput == 0 && horizontalInput == 0)
+        {
+            mAnimator.SetInteger("IdleDirection", lastDir);
+            mAnimator.SetInteger("MoveDirection", 0);
+        }
 		
 		move(hor, vert, zaxis);
 		
