@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         }
 		
 		move(hor, vert, zaxis);
+        Debug.Log("test");
 		
 	}
 
