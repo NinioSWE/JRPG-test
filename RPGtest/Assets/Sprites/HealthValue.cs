@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class HealthValue : MonoBehaviour {
     
-    public float startHealth = 100;
+    public int startHealth = 100;
     public Text healthText;
-
-   static private float health;
+    public bool isHeroes;
+    private int health;
     private Scrollbar m_Scrollbar;
 
     private void Start()
@@ -30,7 +30,7 @@ public class HealthValue : MonoBehaviour {
         healthText.text = health + "/" + startHealth;
 	}
 
-    public static void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
     }

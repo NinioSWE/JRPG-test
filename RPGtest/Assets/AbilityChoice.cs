@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class AbilityChoice : MonoBehaviour {
     private Text abilityNameText;
     public AbilityBlueprint LightningBolt;
+    public delegate void attackEnemy(int i);
+    public event attackEnemy onEnemyAttack;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         abilityNameText = GetComponentInChildren<Text>();
         abilityNameText.text = LightningBolt.name;
 	}
@@ -19,6 +21,9 @@ public class AbilityChoice : MonoBehaviour {
 	}
    public void abilityDoesDamage()
     {
-        HealthValue.TakeDamage(LightningBolt.damage);
+        if (onEnemyAttack != null)
+        {
+            onEnemyAttack(0);
+        }
     }
 }
