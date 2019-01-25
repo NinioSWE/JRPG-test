@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovements : MonoBehaviour 
 {
 	[SerializeField] private float movementSpeed = 3.0f;
 	[SerializeField] private float accelerationSpeed = 1.5f;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	Vector3 movement;
 
-	public static PlayerMovement playerReference;
+	public static PlayerMovements playerReference;
 
 	void Start () 
 	{
