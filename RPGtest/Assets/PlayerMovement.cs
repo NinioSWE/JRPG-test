@@ -53,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		float hor = 0;
 		float vert = 0;	
+		float zaxis = gravity * Time.deltaTime;
+
+		movement = transform.position;
 		
 		if(horizontalInput == left)
 		{
