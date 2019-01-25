@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		float hor = 0;
 		float vert = 0;	
-		float zaxis = 0;
 		
 		if(horizontalInput == left)
 		{
